@@ -1,0 +1,44 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_container
+    restart: always
+    env_file: 
+      - ./environment/.env
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - postgres
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: pgadmin
+      PGADMIN_LISTEN_PORT: 80
+    ports:
+      - "3090:80"
+    depends_on:
+      - postgres
+    networks:
+      - postgres
+
+  app:
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/api-flask
+    depends_on:
+      - postgres
+    networks:
+      - postgres
+    ports:
+      - "80:5000"
+
+networks:
+  postgres:

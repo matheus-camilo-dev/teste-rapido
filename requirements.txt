@@ -1,0 +1,7 @@
+psycopg2-binary
+sqlalchemy
+faker
+flask
+gunicorn
+sqlalchemy
+python-dotenv
