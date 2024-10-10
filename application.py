@@ -15,9 +15,9 @@ app = Flask(__name__)
 dotenv.load_dotenv("environment/.env")
 
 DB_HOST = environ.get("DB_HOST")
-DB_NAME = environ.get("DB_NAME")
-DB_USER = environ.get("DB_USER")
-DB_PASSWORD = environ.get("DB_PASSWORD")
+DB_NAME = environ.get("POSTGRES_DB")
+DB_USER = environ.get("POSTGRES_USER")
+DB_PASSWORD = environ.get("POSTGRES_PASSWORD")
 
 def insert_user_in_db(username:str, password:str):
     previous_token = str(randint(0, 100)) + str(username) + str(password)
