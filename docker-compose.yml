@@ -9,8 +9,6 @@ services:
       - "5432:5432"
     volumes:
       - ./data/init.sql:/docker-entrypoint-initdb.d/init.sql
-    networks:
-      - postgres
 
   pgadmin:
     image: dpage/pgadmin4:latest
@@ -23,8 +21,6 @@ services:
       - "3090:80"
     depends_on:
       - postgres
-    networks:
-      - postgres
 
   app:
     restart: unless-stopped
@@ -34,8 +30,6 @@ services:
     volumes:
       - .:/api-flask
     depends_on:
-      - postgres
-    networks:
       - postgres
     ports:
       - "80:5000"
