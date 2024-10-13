@@ -4,8 +4,8 @@ CREATE TABLE test_db."user"
 (
     id SERIAL NOT NULL,
     username varchar (20) NOT NULL,
-    password varchar (20) NOT NULL,
-    token varchar (20) NOT NULL,
+    password varchar (100) NOT NULL,
+    token varchar (100) NOT NULL,
     token_activate_at timestamp without time zone NOT NULL DEFAULT (CURRENT_TIMESTAMP AT TIME ZONE 'utc'::text)
 );
 

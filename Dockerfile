@@ -3,7 +3,9 @@ FROM python:3.8-slim
 WORKDIR /api-flask
 
 COPY environment/ /api-flask/environment
-COPY util/ /api-flask/util/
+COPY services/ /api-flask/services/
+COPY data/ /api-flask/data/
+COPY models/ /api-flask/models/
 COPY application.py requirements.txt  /api-flask/
 
 RUN pip3 install --upgrade pip && pip install --no-cache-dir -r requirements.txt
